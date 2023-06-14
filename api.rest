@@ -2,5 +2,30 @@
 
 GET http://localhost:5000/resep
 
+### get by name
+GET http://localhost:5000/resep/name
+
 ###
 POST http://localhost:5000/resep
+Content-Type: application/json
+
+{
+    "judul" : "",
+    "foto" : ".jpg",
+    "bahan" : [],
+    "proses" : []
+}
+
+### 
+PUT http://localhost:5000/resep/id
+Content-Type: application/json
+
+{
+    "judul" : "",
+    "foto" : ".jpg",
+    "bahan" : [],
+    "proses" : []
+}
+
+### 
+DELETE http://localhost:5000/resep/id
