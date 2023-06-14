@@ -1,0 +1,22 @@
+{
+  "name": "backend_project_mobile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GNX56S/backend_project_mobile.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GNX56S/backend_project_mobile/issues"
+  },
+  "homepage": "https://github.com/GNX56S/backend_project_mobile#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
