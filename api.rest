@@ -1,0 +1,6 @@
+### tampilkan semua resep
+
+GET http://localhost:5000/resep
+
+###
+POST http://localhost:5000/resep
