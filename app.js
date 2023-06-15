@@ -18,6 +18,14 @@ const app = express();
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
+app.use((req, res) => {
+  return res.status(404).json({
+    status: "Not Found",
+    message: "terjadi kesalahan diclient",
+    errors: ["route not found "],
+    data: [],
+  });
+});
 
 app.use("/resep", resep);
 
