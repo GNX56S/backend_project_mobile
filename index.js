@@ -18,6 +18,9 @@ const app = express();
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
+
+app.use("/resep", resep);
+
 app.use((req, res) => {
   return res.status(404).json({
     status: "Not Found",
@@ -26,9 +29,6 @@ app.use((req, res) => {
     data: [],
   });
 });
-
-app.use("/resep", resep);
-
 app.listen(5000, function () {
   console.log("server sedang berjalan");
 });
