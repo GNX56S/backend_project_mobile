@@ -29,3 +29,13 @@ Content-Type: application/json
 
 ### 
 DELETE http://localhost:5000/resep/id
+
+### login
+
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username" : "admin",
+    "password" : "admin"
+}

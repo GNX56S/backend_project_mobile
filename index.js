@@ -4,6 +4,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import resep from "./routers/resep.js";
+import auth from "./routers/auth.js";
 dotenv.config();
 
 // mongoDB connection
@@ -20,6 +21,8 @@ app.use(morgan("tiny"));
 app.use(express.json());
 
 app.use("/resep", resep);
+app.use(auth)
+
 
 app.use((req, res) => {
   return res.status(404).json({
