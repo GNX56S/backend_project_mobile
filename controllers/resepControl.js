@@ -11,6 +11,15 @@ class ResepControl {
     }
   }
 
+  static async getById(req, res) {
+    try {
+      const data = await ResepColl.findById(req.params.id);
+      return Response.success(res, "resep", [data]);
+    } catch (err) {
+      return Response.serverError(res, err);
+    }
+  }
+
   static async getAllByName(req, res) {
     try {
       const data = await ResepColl.find({
@@ -46,7 +55,7 @@ class ResepControl {
     try {
       const { judul, foto, bahan, proses } = req.body;
 
-      await ResepColl.updateOne(
+      const data = await ResepColl.updateOne(
         { _id: req.params.id },
         {
           judul: judul,
@@ -55,7 +64,13 @@ class ResepControl {
           proses: proses,
         }
       );
-      return Response.success(res, "resep berhasil ditambah");
+
+      if (data.matchedCount === 0) {
+        return Response.notFound(res, "resep tidak ditemukan");
+      }
+
+      req.body._id = req.params.id;
+      return Response.success(res, "resep berhasil diubah", [req.body]);
     } catch (err) {
       return Response.serverError(res, err);
     }
@@ -69,7 +84,7 @@ class ResepControl {
         return Response.notFound(res, "resep tidak ditemukan");
       }
 
-      return Response.success(res, "resep berhasil ditambah", data);
+      return Response.success(res, "resep berhasil dihapus");
     } catch (err) {
       return Response.serverError(res, err);
     }

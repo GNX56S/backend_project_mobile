@@ -10,21 +10,21 @@ POST http://localhost:5000/resep
 Content-Type: application/json
 
 {
-    "judul" : "",
-    "foto" : ".jpg",
-    "bahan" : [],
-    "proses" : []
+    "judul" : "ikan goreng",
+    "foto" : "ikan-goreng.jpg",
+    "bahan" : ["ikan"],
+    "proses" : ["digoreng"]
 }
 
 ### 
-PUT http://localhost:5000/resep/id
+PUT http://localhost:5000/resep/64916bba1910396e945e64fd
 Content-Type: application/json
 
 {
-    "judul" : "",
-    "foto" : ".jpg",
-    "bahan" : [],
-    "proses" : []
+    "judul" : "ikan goreng enak",
+    "foto" : "ikan-goreng.jpg",
+    "bahan" : ["ikan"],
+    "proses" : ["digoreng"]
 }
 
 ### 
