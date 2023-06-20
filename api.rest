@@ -3,7 +3,11 @@
 GET http://localhost:5000/resep
 
 ### get by name
-GET http://localhost:5000/resep/name
+GET http://localhost:5000/resep/search/name
+
+### get by id
+GET http://localhost:5000/resep/id
+
 
 ###
 POST http://localhost:5000/resep
