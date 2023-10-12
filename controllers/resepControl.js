@@ -1,5 +1,6 @@
 import ResepColl from "../model/schemaResep.js";
 import Response from "../utils/response.js";
+import boyerMoore from "../utils/algoSearch.js";
 
 class ResepControl {
   static async getAll(req, res) {
@@ -22,11 +23,27 @@ class ResepControl {
 
   static async getAllByName(req, res) {
     try {
-      const data = await ResepColl.find({
-        judul: {
-          $regex: new RegExp(req.params.title),
-        },
-      });
+
+      console.log("kesini")
+
+      const allResep = await ResepColl.find()
+      const title = req.params.title.toLowerCase()
+
+      const data = []
+
+      for(const [i,resep] of allResep.entries()){
+        const resepName = resep.judul.toLowerCase()
+        const result = boyerMoore(resepName,title)
+
+
+        if(result){
+          data.push(resep)        
+        }
+
+        console.log(resep)
+        console.log(i)
+
+      }
       return Response.success(res, "semua data resep", data);
     } catch (err) {
       return Response.serverError(res, err);
