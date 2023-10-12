@@ -1,5 +1,6 @@
 import ResepColl from "../model/schemaResep.js";
 import Response from "../utils/response.js";
+import kmpSearch from "../utils/searchAlgo.js";
 
 class ResepControl {
   static async getAll(req, res) {
@@ -22,11 +23,21 @@ class ResepControl {
 
   static async getAllByName(req, res) {
     try {
-      const data = await ResepColl.find({
-        judul: {
-          $regex: new RegExp(req.params.title),
-        },
-      });
+      const title = req.params.title
+      const data = []
+      const allResep = await ResepColl.find()
+
+      for(const resep of allResep){
+        const resepName = resep.judul
+        const result = kmpSearch(resepName,title)
+
+        if(result){
+          data.push(resep)
+        }
+
+        console.log(resep)
+      }
+
       return Response.success(res, "semua data resep", data);
     } catch (err) {
       return Response.serverError(res, err);
