@@ -9,6 +9,8 @@ function badCharHeuristic(str, size, badchar) {
 }
 
 function boyerMoore(txt, pat) {
+    pat = pat.toLowerCase()
+    txt = txt.toLowerCase()
     const m = pat.length;
     const n = txt.length;
     const badchar = new Array(256);
@@ -36,6 +38,3 @@ function boyerMoore(txt, pat) {
 
 
 export default boyerMoore
-
-
-console.log(boyerMoore("Seasonal Greens Salad".toLowerCase(),"cink"))

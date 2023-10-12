@@ -24,15 +24,13 @@ class ResepControl {
   static async getAllByName(req, res) {
     try {
 
-      console.log("kesini")
-
       const allResep = await ResepColl.find()
-      const title = req.params.title.toLowerCase()
+      const title = req.params.title
 
       const data = []
 
       for(const [i,resep] of allResep.entries()){
-        const resepName = resep.judul.toLowerCase()
+        const resepName = resep.judul
         const result = boyerMoore(resepName,title)
 
 
