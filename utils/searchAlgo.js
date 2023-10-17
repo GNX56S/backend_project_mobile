@@ -1,29 +1,44 @@
-function kmpSearch(txt,pat) {
+function buildPrefixTable(pat) {
+    const table = [0];
+    let i = 1;
+    let j = 0; 
+    while (i < pat.length) {
+      if (pat[i] === pat[j]) {
+        j += 1;
+        table[i] = j;
+        i += 1;
+      } else if (j > 0) {
+        j = table[j - 1];
+      } else {
+        table[i] = 0;
+        i += 1;
+      }
+    }
+    return table;
+}
+
+function kmpSearch(txt,pat){
     txt = txt.toLowerCase()
     pat = pat.toLowerCase()
-    let M = pat.length;
-    let N = txt.length;
-    let lps = new Array(M);
-    let i = 0;
-    let j = 0;
-    while (N - i >= M - j) {
-        if (pat[j] == txt[i]) {
-            j++;
-            i++;
-        }
-        if (j == M) {
-            console.log("Found pattern at index " + (i - j));
-            j = lps[j - 1];
+
+    const table = buildPrefixTable(pat)
+    let i = 0, j = 0
+
+    while (i < txt.length) {
+        if (txt[i] === pat[j]) {
+          if (j === pat.length - 1){
             return true
-        } else if (i < N && pat[j] != txt[i]) {
-            if (j != 0) {
-                j = lps[j - 1];
-            } else {
-                i = i + 1;
-            }
+          }
+          i++;
+          j++;
+        } else if (j > 0) {
+          j = table[j - 1];
+        } else {
+          i++;
         }
-    }
-    return false
+      }
+
+      return false
 }
 
 export default kmpSearch
