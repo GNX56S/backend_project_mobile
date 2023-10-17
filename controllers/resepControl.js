@@ -37,10 +37,6 @@ class ResepControl {
         if(result){
           data.push(resep)        
         }
-
-        console.log(resep)
-        console.log(i)
-
       }
       return Response.success(res, "semua data resep", data);
     } catch (err) {

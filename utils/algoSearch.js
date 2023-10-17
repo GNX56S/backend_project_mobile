@@ -1,35 +1,40 @@
-function badCharHeuristic(str, size, badchar) {
+function badCharHeuristic(pat) {
+    const badchar = new Array(256)
     for (let i = 0; i < 256; i++) {
+        
         badchar[i] = -1;
     }
+
     
-    for (let i = 0; i < size; i++) {
-        badchar[str.charCodeAt(i)] = i;
+    for (let i = 0; i < pat.length; i++) {
+        badchar[pat.charCodeAt(i)] = i;
     }
+    return badchar
 }
 
-function boyerMoore(txt, pat) {
+function boyerMoore(txt,pat){
     pat = pat.toLowerCase()
     txt = txt.toLowerCase()
     const m = pat.length;
     const n = txt.length;
-    const badchar = new Array(256);
-    
-    badCharHeuristic(pat, m, badchar);
-    let s = 0;
-    
-    while (s <= (n - m)) {
-        let j = m - 1;
-        
-        while (j >= 0 && pat[j] == txt[s + j]) {
-            j--;
-        }
-        
-        if (j < 0) {
-            s += (s + m < n) ? m - badchar[txt.charCodeAt(s + m)] : 1;
-            return true
-        } else {
-            s += Math.max(1, j - badchar[txt.charCodeAt(s + j)]);
+
+    const last = badCharHeuristic(pat)
+
+    let j = m-1;
+    let i = j;
+    while(i <=n-1){
+        console.log(pat[j],txt[i])
+        if(pat[j] == txt[i]){
+            if(j == 0){
+                return true
+            }else{
+                i--;
+                j--;
+            }
+        }else{
+            let lo = last[txt.charCodeAt(i)];
+            i = i+m - Math.min(j, 1+lo);
+            j = m-1;
         }
     }
     return false
