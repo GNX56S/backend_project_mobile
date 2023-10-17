@@ -23,7 +23,6 @@ function boyerMoore(txt,pat){
     let j = m-1;
     let i = j;
     while(i <=n-1){
-        console.log(pat[j],txt[i])
         if(pat[j] == txt[i]){
             if(j == 0){
                 return true
