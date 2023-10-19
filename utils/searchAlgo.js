@@ -5,12 +5,12 @@ function buildPrefixTable(pat) {
     while (i < pat.length) {
       if (pat[j] === pat[i]) {
         j += 1;
-        table[i] = j;
+        table.push(j) // table[i] = j
         i += 1;
       } else if (j > 0) {
         j = table[j - 1];
       } else {
-        table[i] = 0;
+        table.push(0) // table[i] = 0
         i += 1;
       }
     }
