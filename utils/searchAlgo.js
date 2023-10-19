@@ -3,7 +3,7 @@ function buildPrefixTable(pat) {
     let i = 1;
     let j = 0; 
     while (i < pat.length) {
-      if (pat[i] === pat[j]) {
+      if (pat[j] === pat[i]) {
         j += 1;
         table[i] = j;
         i += 1;
